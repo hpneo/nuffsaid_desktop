@@ -1,0 +1,8 @@
+{
+  "name": "nuffsaid",
+  "description": "Comic book library app",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-node-webkit-builder": "latest"
+  }
+}
