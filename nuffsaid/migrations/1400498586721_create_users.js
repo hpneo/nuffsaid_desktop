@@ -3,7 +3,8 @@ module.exports = {
     migration.createTable('users', {
       username: 'string',
       email: 'string',
-      password: 'string'
+      password: 'string',
+      avatar: 'string'
     }, {
       useTimestamps: true
     });
