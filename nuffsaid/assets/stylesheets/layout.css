@@ -18,6 +18,7 @@ body {
 
 a {
   text-decoration: none;
+  cursor: default;
 }
 
 ul, li, dl, dt, dd {
@@ -32,28 +33,63 @@ ul {
 nav {
   display: block;
   width: 100%;
-  height: 48px;
-  line-height: 48px;
-  background: #303030;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   padding: 1px 0;
   overflow: visible;
 }
 
-nav.bottom {
+nav.main {
+  height: 48px;
+  line-height: 48px;
+  background: #262626;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+nav.medium {
+  background: #efefef;
+  height: 32px;
+  line-height: 32px;
+  box-shadow: none;
+  padding: 0px 5px;
+}
+
+nav.small {
   background: #efefef;
   height: 24px;
   line-height: 24px;
   box-shadow: none;
+}
+
+nav.bottom {
   border-top: solid 1px #a3a3a3; /*#272727*/
+}
+
+nav.top {
+  border-bottom: solid 1px #a3a3a3; /*#272727*/
 }
 
 nav > * {
   display: inline-block;
   float: left;
   vertical-align: middle;
+}
+
+nav > *.disabled {
+  opacity: 0.5;
+}
+
+nav.main > * {
   height: 46px;
   line-height: 46px;
+}
+
+nav.medium > * {
+  height: 31px;
+  line-height: 31px;
+}
+
+nav.small > * {
+  height: 22px;
+  line-height: 22px;
 }
 
 nav > form {
@@ -68,17 +104,43 @@ nav input {
   color: #303030;
   background: rgba(255, 255, 255, 0.9);
   border: solid 1px #262626;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 nav > a {
-  padding: 0px 16px;
   color: rgba(255, 255, 255, 0.9);
   text-transform: uppercase;
+  font-weight: 600;
 }
 
-nav > a:hover {
-  background: #2980b9;
+nav.main > a {
+  padding: 0px 16px;
+}
+
+nav.medium > a {
+  padding: 0px 8px;
+  color: #333333;
+  margin-right: 10px;
+}
+
+nav.medium > a img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -2px;
+  margin-right: 2px;
+  width: 16px;
+}
+
+nav.small > a {
+  padding: 0px 4px;
+}
+
+nav.main > a:not(.disabled):hover {
+  background: #308cd9;
+}
+
+nav.medium > a:not(.disabled):hover {
+  background: #a3a3a3;
 }
 
 #main {
@@ -95,6 +157,10 @@ nav > a:hover {
   border-right: solid 1px #a3a3a3;
 }
 
+#sidebar dl {
+  height: calc(100% - 24px);
+}
+
 #sidebar dt {
   color: #6e7e8d;
   font-weight: bold;
@@ -104,7 +170,11 @@ nav > a:hover {
 }
 
 #sidebar li {
+  display: flex;
+  align-items: center;
   color: #333;
+  overflow: hidden;
+  height: 27px;
 }
 
 #sidebar li a {
@@ -112,6 +182,21 @@ nav > a:hover {
   color: #333;
   text-shadow: 0 1px #f1f4f7;
   padding: 3px 15px;
+  flex-grow: 1;
+}
+
+#sidebar li .badge {
+  display: block;
+  min-width: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #95a5a6;
+  border-radius: 50%;
+  margin-right: 4px;
 }
 
 #sidebar li:hover {
@@ -120,32 +205,80 @@ nav > a:hover {
 
 #sidebar li:hover a {
   color: #fff;
-  text-shadow: 0 1px #363636;
+}
+
+#sidebar li:hover .badge {
+  color: #2980b9;
+  background-color: #ffffff;
 }
 
 #sidebar li.active {
   background: #308cd9;
   border-top: solid 1px #4ea2e2;
   border-bottom: solid 1px #4ea2e2;
-  text-shadow: 0 1px #225e91;
 }
 
 #sidebar li.active a {
   color: #fff;
-  text-shadow: 0 1px #363636;
 }
 
-#library {
-  display: flex;
+#sidebar li.active .badge {
+  color: #2980b9;
+  background-color: #ffffff;
+}
+
+#library-wrapper {
   width: calc(100% - 240px);
   height: 100%;
   float: left;
-  background: #fcfcfc;
+}
+
+#library {
   overflow: auto;
-  padding: 20px;
+  background: #fcfcfc;
+  display: flex;
+  flex-flow: row wrap;
+  height: calc(100% - 32px);
+  padding: 40px;
 }
 
 #library .item {
-  width: 240px;
-  height: 240px;
+  width: 250px;
+  height: 250px;
+  border-radius: 4px;
+}
+
+#library .item img {
+  display: block;
+  max-height: 192px;
+  margin: 0 auto;
+  box-shadow: 1px 1px 5px #303030;
+}
+
+#library .item span {
+  display: block;
+  text-align: center;
+}
+
+#library .item span.series {
+  color: #333333;
+  font-weight: 600;
+}
+
+#library .item span.issueNumber {
+  color: #666666;
+  font-weight: 300;
+}
+
+#library .item:hover {
+  background: #ecf0f1;
+}
+
+#library .item.selected {
+  background: #308cd9;
+}
+
+#library .item.selected span.series,
+#library .item.selected span.issueNumber {
+  color: #ffffff;
 }

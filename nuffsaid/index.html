@@ -8,7 +8,7 @@
   <script type="text/javascript" src="app.js"></script>
 </head>
 <body>
-  <nav>
+  <nav class="main">
     <a href="#">Add</a>
     <a href="#">Add series</a>
     <a href="#">Settings</a>
@@ -22,31 +22,75 @@
         <dt>Series</dt>
         <dd id="series-sidebar">
           <ul>
-            <li class="active"><a href="#">All</a></li>
+            <li class="active"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
         <dt>Story Arcs</dt>
         <dd id="story-arcs-sidebar">
           <ul>
-            <li><a href="#">All</a></li>
+            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
         <dt>Publishers</dt>
         <dd id="publishers-sidebar">
           <ul>
-            <li><a href="#">All</a></li>
+            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
         <dt>Lists</dt>
         <dd id="lists-sidebar">
           <ul>
-            <li><a href="#">All</a></li>
+            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
       </dl>
+      <nav class="small bottom"></nav>
     </aside>
-    <section id="library"></section>
+    <section id="library-wrapper">
+      <nav class="medium top">
+        <a href="#" class="disabled"><img src="assets/images/checkin.png"> Check in</a>
+        <a href="#"><img src="assets/images/edit.png"> Edit</a>
+        <a href="#"><img src="assets/images/delete.png"> Delete</a>
+      </nav>
+      <section id="library">
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/0/443/82656-18023-105525-1-civil-war.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#1</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/0/443/83333-18023-105570-1-civil-war.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#2</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/5/56044/1832470-civil_war__2006_marvel__3a.jpeg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#3</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/0/443/84167-18023-105682-1-civil-war.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#4</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/11/110017/2945051-www.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#5</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/1/11307/440508-civil_war_6_00.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#6</span>
+        </div>
+        <div class="item">
+          <img src="http://static.comicvine.com/uploads/scale_large/11/110017/2779408-www.jpg">
+          <span class="series">Civil War</span>
+          <span class="issueNumber">#7</span>
+        </div>
+      </section>
+    </section>
   </section>
-  <nav class="bottom"></nav>
+  <nav class="small bottom"></nav>
 </body>
 </html>
