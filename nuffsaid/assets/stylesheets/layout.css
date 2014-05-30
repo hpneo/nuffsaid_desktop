@@ -19,6 +19,7 @@ body {
 a {
   text-decoration: none;
   cursor: default;
+  color: inherit;
 }
 
 ul, li, dl, dt, dd {
@@ -227,7 +228,7 @@ nav.medium > a:not(.disabled):hover {
   background-color: #ffffff;
 }
 
-#library-wrapper {
+#library_wrapper {
   width: calc(100% - 240px);
   height: 100%;
   float: left;
@@ -274,11 +275,14 @@ nav.medium > a:not(.disabled):hover {
   background: #ecf0f1;
 }
 
-#library .item.selected {
-  background: #308cd9;
+#library .item.selected img {
+  /*background: #308cd9;*/
+  background: #ecf0f1;
+  outline: solid 2px #308cd9;
+  box-shadow: 1px 1px 10px #308cd9;
 }
 
 #library .item.selected span.series,
 #library .item.selected span.issueNumber {
-  color: #ffffff;
+  /*color: #ffffff;*/
 }

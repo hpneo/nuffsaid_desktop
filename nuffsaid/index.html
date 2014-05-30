@@ -4,8 +4,9 @@
   <meta charset="utf-8">
   <title>Nuff Said</title>
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/fonts.css">
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/animate.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/layout.css">
-  <script type="text/javascript" src="app.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/modal.css">
 </head>
 <body>
   <nav class="main">
@@ -20,33 +21,33 @@
     <aside id="sidebar">
       <dl>
         <dt>Series</dt>
-        <dd id="series-sidebar">
+        <dd id="series_sidebar">
           <ul>
-            <li class="active"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li id="all_series" class="active"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
         <dt>Story Arcs</dt>
-        <dd id="story-arcs-sidebar">
+        <dd id="story_arcs_sidebar">
           <ul>
-            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li id="all_story_arcs"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
         </dd>
         <dt>Publishers</dt>
-        <dd id="publishers-sidebar">
+        <dd id="publishers_sidebar">
+          <ul>
+            <li id="all_publishers"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+          </ul>
+        </dd>
+        <!--<dt>Lists</dt>
+        <dd id="lists_sidebar">
           <ul>
             <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
           </ul>
-        </dd>
-        <dt>Lists</dt>
-        <dd id="lists-sidebar">
-          <ul>
-            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
-          </ul>
-        </dd>
+        </dd>-->
       </dl>
       <nav class="small bottom"></nav>
     </aside>
-    <section id="library-wrapper">
+    <section id="library_wrapper">
       <nav class="medium top">
         <a href="#" class="disabled"><img src="assets/images/checkin.png"> Check in</a>
         <a href="#"><img src="assets/images/edit.png"> Edit</a>
@@ -92,5 +93,42 @@
     </section>
   </section>
   <nav class="small bottom"></nav>
+  <template id="template_series">
+    <div class="modal animated bounceInDown" id="modal_series">
+      <header class="modal-header">
+        Add series
+        <a class="close" href="#">✖</a>
+      </header>
+      <section class="modal-content">
+        <form method="post">
+          <p>
+            <label for="series_name">Search:</label>
+            <input type="text" name="series[name]" id="series_name" />
+          </p>
+          <p class="centered">
+            <input type="submit" value="Add">
+          </p>
+        </form>
+      </section>
+    </div>
+  </template>
+  <script type="text/javascript" src="assets/javascripts/zepto.js"></script>
+  <script type="text/javascript" src="assets/javascripts/xhr.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript">
+    App.load();
+
+    App.Models.Series.count().then(function(count) {
+      $('#all_series').find('.badge').text(count).attr('title', count + ' issues');
+    });
+
+    App.Models.StoryArc.count().then(function(count) {
+      $('#all_story_arcs').find('.badge').text(count).attr('title', count + ' issues');
+    });
+
+    App.Models.Publisher.count().then(function(count) {
+      $('#all_publishers').find('.badge').text(count).attr('title', count + ' issues');
+    });
+  </script>
 </body>
 </html>

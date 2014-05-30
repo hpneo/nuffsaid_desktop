@@ -5,9 +5,11 @@ var App = {
 
 Coffre.init().then(function(version) {
   console.log('current version', version);
+});
 
-  App.Models.User = require('./app/models/user');
+App.load = function() {
+  App.Models.Publisher = require('./app/models/publisher');
   App.Models.Series = require('./app/models/series');
   App.Models.StoryArc = require('./app/models/story_arc');
   App.Models.Issue = require('./app/models/issue');
-});
+};

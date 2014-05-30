@@ -1,0 +1,71 @@
+#overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(174, 167, 159, 0.15);
+}
+
+#overlay .modal {
+  min-width: 460px;
+  max-width: 620px;
+  width: 80%;
+  position: relative;
+  background: #ffffff;
+  border: solid 1px rgba(174, 167, 159, 0.5);
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px rgba(174, 167, 159, 0.5);
+}
+
+.modal .modal-header {
+  padding: 10px 20px;
+  overflow: hidden;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+  border-bottom: solid 1px rgba(174, 167, 159, 0.25);
+}
+
+.modal .modal-header .close {
+  display: block;
+  float: right;
+}
+
+.modal .modal-content {
+  padding: 20px;
+}
+
+.modal form p.centered {
+  text-align: center;
+}
+
+.modal form p > * {
+  display: inline-block;
+}
+
+.modal form p > label {
+  width: 150px;
+}
+
+.modal form p > input {
+  border: solid 1px rgba(174, 167, 159, 0.5);
+  border-radius: 2px;
+  padding: 5px;
+  margin: 0;
+  width: calc(100% - 160px);
+}
+
+.modal form p > input[type="submit"] {
+  padding: 10px 20px;
+  width: auto;
+  background: #262626;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+}

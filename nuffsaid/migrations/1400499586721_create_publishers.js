@@ -1,16 +1,14 @@
 module.exports = {
   up: function(migration) {
-    migration.createTable('series', {
+    migration.createTable('publishers', {
       name: 'string',
       description: 'string',
-      publisher: 'reference',
-      image: 'string',
-      startYear: 'string'
+      image: 'string'
     }, {
       useTimestamps: true
     });
   },
   down: function(migration) {
-    migration.dropTable('series');
+    migration.dropTable('publishers');
   }
 };
