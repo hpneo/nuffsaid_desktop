@@ -164,7 +164,7 @@ nav.medium > a:not(.disabled):hover {
 
 #sidebar dt {
   color: #6e7e8d;
-  font-weight: bold;
+  font-weight: 700;
   text-shadow: 0 1px #f9fafc;
   text-transform: uppercase;
   padding: 2px 8px;
@@ -254,6 +254,7 @@ nav.medium > a:not(.disabled):hover {
   max-height: 192px;
   margin: 0 auto;
   box-shadow: 1px 1px 5px #303030;
+  border-radius: 1px;
 }
 
 #library .item span {

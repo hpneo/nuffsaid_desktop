@@ -1,4 +1,5 @@
 var Coffre = require('coffre');
+
 var App = {
   Models: {}
 };

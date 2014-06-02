@@ -1,26 +1,25 @@
 var Modal = function Modal(options) {
-  this.content = $('template_' + options.modal).children();
+  this.modalId = options.modal;
+  this.content = $('#template_' + options.modal)[0].content;
   this.overlay = $('#overlay');
+};
 
-  if (this.overlay.length == 0) {
-    this.overlay = $('<div>', {
-      id: 'overlay'
-    });
-  }
-
+Modal.prototype.enableOverlayEvent = function() {
   var self = this;
 
-  this.overlay.on("click", function(e) {
-    var target = e.target;
+  $(document).off('click', '#overlay');
+  $(document).one("click", '#overlay', function(e) {
+    var target = $(e.target);
     
-    if (target.nodeName === 'A') {
-      return true;
-    }
-    
-    if ($(target).attr('id') === 'overlay') {
+    if (target.is('.modal .close') || target.is('#overlay')) {
+      e.preventDefault();
       self.close();
     }
-  })
+    
+    if (target[0].nodeName === 'A') {
+      return true;
+    }
+  });
 };
 
 Modal.prototype.overlayExists = function() {
@@ -31,36 +30,40 @@ Modal.prototype.closeOverlay = function() {
   if (this.overlayExists()) {
     var self = this;
 
-    this.overlay.attr('class', 'animated fadeOut').on('animationend', function(e) {
-      if (self.overlay.hasClass('fadeOut')) {
-        self.overlay.off('click');
-        self.overlay.remove();
-      }
+    this.overlay.removeClass('fadeIn').addClass('fadeOut').on('webkitAnimationEnd', function(e) {
+      $(document).off('click', '#overlay');
+      self.overlay.remove();
     });
   }
 };
 
 Modal.prototype.showOverlay = function(callback) {
   var body = $('body');
+
   if (!this.overlayExists()) {
     this.overlay = $('<div>', {
       id: 'overlay'
     });
 
     body.append(this.overlay);
+
+    this.overlay = $('#overlay');
   }
 
-  this.overlay.attr('css', 'animated fadeIn').on('animationend', callback);
+  this.enableOverlayEvent();
+
+  var overlay = this.overlay;
+
+  this.overlay.attr('class', 'animated fadeIn');
+  callback(overlay);
 };
 
 Modal.prototype.show = function() {
-  if (this.content.length > 0) {
-    var modal = this.content.hide();
+  if (this.content !== undefined) {
+    var content = this.content;
 
-    this.overlay.append(modal);
-
-    this.showOverlay(function() {
-      modal.attr('css', 'animated fadeIn');
+    this.showOverlay(function(overlay) {
+      overlay.append(content);
     });
   }
 
@@ -68,10 +71,21 @@ Modal.prototype.show = function() {
 };
 
 Modal.prototype.close = function() {
-  if (this.content.length > 0) {
-    var modal = this.content;
-    var self = this;
-    modal.fadeOut(300, (self.closeOverlay)(self));
+  var self = this;
+  var modal = this.overlay.find('.modal');
+
+  if (modal.length > 0) {
+    modal.removeClass('bounceInDown').addClass('bounceOutUp').on('webkitAnimationEnd', function() {
+      if (self.overlay.children()[0]) {
+        self.content.appendChild(self.overlay.children()[0]);
+        $(self.content.firstChild).removeClass('bounceOutUp').addClass('bounceInDown');
+      }
+
+      self.closeOverlay();
+    });
+  }
+  else {
+    self.closeOverlay();
   }
 
   return this;
