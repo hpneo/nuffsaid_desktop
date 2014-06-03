@@ -23,25 +23,25 @@
         <dt>Series</dt>
         <dd id="series_sidebar">
           <ul>
-            <li id="all_series" class="active"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li id="all_series" class="active"><a href="#">All</a><span class="badge" title="0 issues">0</span></li>
           </ul>
         </dd>
         <dt>Story Arcs</dt>
         <dd id="story_arcs_sidebar">
           <ul>
-            <li id="all_story_arcs"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li id="all_story_arcs"><a href="#">All</a><span class="badge" title="0 issues">0</span></li>
           </ul>
         </dd>
         <dt>Publishers</dt>
         <dd id="publishers_sidebar">
           <ul>
-            <li id="all_publishers"><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li id="all_publishers"><a href="#">All</a><span class="badge" title="0 issues">0</span></li>
           </ul>
         </dd>
         <!--<dt>Lists</dt>
         <dd id="lists_sidebar">
           <ul>
-            <li><a href="#">All</a><span class="badge" title="7 issues">7</span></li>
+            <li><a href="#">All</a><span class="badge" title="0 issues">0</span></li>
           </ul>
         </dd>-->
       </dl>
@@ -113,23 +113,39 @@
     </div>
   </template>
   <script type="text/javascript" src="assets/javascripts/zepto.js"></script>
+  <script type="text/javascript" src="assets/javascripts/underscore.js"></script>
+  <script type="text/javascript" src="assets/javascripts/backbone.js"></script>
   <script type="text/javascript" src="assets/javascripts/modal.js"></script>
   <script type="text/javascript" src="assets/javascripts/ui.js"></script>
+  <script type="text/javascript" src="app/views/sidebar.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript">
     App.load();
 
-    App.Models.Series.count().then(function(count) {
-      $('#all_series').find('.badge').text(count).attr('title', count + ' issues');
+    var allSeries = $('#all_series'),
+        allStoryArcs = $('#all_story_arcs'),
+        allPublishers = $('#all_publishers'),
+        publishersSidebar = $('#publishers_sidebar');
+
+    // App.Models.Series.count().then(function(count) {
+    //   allSeries.find('.badge').text(count).attr('title', count + ' issues');
+    // });
+
+    // App.Models.StoryArc.count().then(function(count) {
+    //   allStoryArcs.find('.badge').text(count).attr('title', count + ' issues');
+    // });
+
+    // App.Models.Publisher.count().then(function(count) {
+    //   allPublishers.find('.badge').text(count).attr('title', count + ' issues');
+    // });
+
+    var sidebar = new Sidebar({
+      series: App.Models.Series.all(),
+      storyArcs: App.Models.StoryArc.all(),
+      publishers: App.Models.Publisher.all()
     });
 
-    App.Models.StoryArc.count().then(function(count) {
-      $('#all_story_arcs').find('.badge').text(count).attr('title', count + ' issues');
-    });
-
-    App.Models.Publisher.count().then(function(count) {
-      $('#all_publishers').find('.badge').text(count).attr('title', count + ' issues');
-    });
+    sidebar.render();
   </script>
 </body>
 </html>

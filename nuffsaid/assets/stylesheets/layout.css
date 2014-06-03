@@ -206,6 +206,7 @@ nav.medium > a:not(.disabled):hover {
 
 #sidebar li:hover a {
   color: #fff;
+  text-shadow: none;
 }
 
 #sidebar li:hover .badge {
