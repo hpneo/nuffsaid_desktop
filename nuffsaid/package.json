@@ -1,16 +1,17 @@
 {
   "name": "nuffsaid",
-  "main": "index.html",
+  "main": "app://nuffsaid/index.html",
   "description": "Comic book library app",
   "version": "0.1.0",
   "keywords": [ "comic", "comicbook" ],
   "window": {
     "title": "Nuff Said",
-    "width": 920,
-    "height": 620,
+    "width": 784,
+    "height": 570,
     "min_width": 580,
     "min_height": 490,
     "toolbar": true,
-    "position": "center"
+    "position": "center",
+    "show": false
   }
 }

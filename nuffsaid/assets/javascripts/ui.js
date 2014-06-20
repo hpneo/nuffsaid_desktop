@@ -1,9 +1,16 @@
-$(document).on('click', '.nav_item', function(e) {
-  e.preventDefault();
+var UI = {};
 
-  switch($(this).attr('id')) {
-    case 'add_series':
-      window.currentModal = Modal.show('series');
-    break;
-  }
-});
+UI.init = function() {
+  /*var sidebar = new Sidebar({
+    series: App.Models.Series.all(),
+    storyArcs: App.Models.StoryArc.all(),
+    publishers: App.Models.Publisher.all()
+  });
+
+  sidebar.render();*/
+
+  var mainNav = new MainNav({
+    libraryView: new LibraryView()
+  });
+  mainNav.render();
+};

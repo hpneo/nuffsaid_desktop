@@ -16,7 +16,8 @@ module.exports = function(grunt) {
   grunt.registerTask('dist', ['nodewebkit']);
   grunt.registerTask('start', 'Start app', function() {
     grunt.util.spawn({
-      cmd: './dist/cache/linux32/0.9.2/nw',
+      //cmd: './dist/cache/linux32/0.9.2/nw',
+      cmd: 'dist/cache/mac/0.9.2/node-webkit.app/Contents/MacOS/node-webkit',
       args: ['nuffsaid']
     });
   })

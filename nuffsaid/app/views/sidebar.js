@@ -31,12 +31,12 @@ var Sidebar = Backbone.View.extend({
     });
   },
   renderSeries: function(series) {
-    this.$seriesSidebar.find('ul').append('<li data-series="' + series.id + '"><a href="#">' + series.name + '</a></li>');
+    this.$seriesSidebar.find('ul').append('<li data-id="' + series.id + '"><a href="#">' + series.name + '</a></li>');
   },
   renderStoryArc: function(storyArc) {
-    this.$storyArcsSidebar.find('ul').append('<li data-publisher="' + storyArc.id + '"><a href="#">' + storyArc.name + '</a></li>');
+    this.$storyArcsSidebar.find('ul').append('<li data-id="' + storyArc.id + '"><a href="#">' + storyArc.name + '</a></li>');
   },
   renderPublisher: function(publisher) {
-    this.$publishersSidebar.find('ul').append('<li data-publisher="' + publisher.id + '"><a href="#">' + publisher.name + '</a></li>');
+    this.$publishersSidebar.find('ul').append('<li data-id="' + publisher.id + '"><a href="#">' + publisher.name + '</a></li>');
   }
 });

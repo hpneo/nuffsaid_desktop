@@ -3,6 +3,7 @@
   "description": "Comic book library app",
   "devDependencies": {
     "grunt": "latest",
-    "grunt-node-webkit-builder": "latest"
+    "grunt-node-webkit-builder": "^0.1.21",
+    "node-webkit-builder": "0.0.2"
   }
 }
