@@ -6,11 +6,11 @@
   "keywords": [ "comic", "comicbook" ],
   "window": {
     "title": "Nuff Said",
-    "width": 784,
+    "width": 800,
     "height": 570,
     "min_width": 580,
     "min_height": 490,
-    "toolbar": true,
+    "toolbar": false,
     "position": "center",
     "show": false
   }
