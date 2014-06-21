@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/animate.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/layout.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/nav.css">
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/library.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/modal.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/chosen.css">
 </head>
@@ -47,57 +48,7 @@
     </a>
   </nav>
   <section id="main">
-    <section id="library">
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/0/443/82656-18023-105525-1-civil-war.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#1</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/0/443/83333-18023-105570-1-civil-war.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#2</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/5/56044/1832470-civil_war__2006_marvel__3a.jpeg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#3</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/0/443/84167-18023-105682-1-civil-war.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#4</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/11/110017/2945051-www.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#5</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/1/11307/440508-civil_war_6_00.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#6</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/11/110017/2779408-www.jpg">
-        <span class="series">Civil War</span>
-        <span class="issueNumber">#7</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/5/52045/1084030-siege001_dc11_0001.jpg">
-        <span class="series">Siege</span>
-        <span class="issueNumber">#1</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/5/52045/1114301-siege002_dc11_lr_0001_02.jpg">
-        <span class="series">Siege</span>
-        <span class="issueNumber">#2</span>
-      </div>
-      <div class="item">
-        <img src="http://static.comicvine.com/uploads/scale_large/5/52045/1156489-siege003_dc11_lr_0001.jpg">
-        <span class="series">Siege</span>
-        <span class="issueNumber">#3</span>
-      </div>
+    <section id="library_wrapper">
     </section>
   </section>
   <nav class="small bottom"></nav>
@@ -123,7 +74,10 @@
   <script type="text/javascript" src="libs/jquery.js"></script>
   <script type="text/javascript" src="libs/underscore.js"></script>
   <script type="text/javascript" src="libs/backbone.js"></script>
+  <script type="text/javascript" src="libs/react.js"></script>
   <script type="text/javascript" src="app/views/main_nav.js"></script>
+  <script type="text/javascript" src="app/views/series_item.js"></script>
+  <script type="text/javascript" src="app/views/issue_item.js"></script>
   <script type="text/javascript" src="app/views/library.js"></script>
   <script type="text/javascript" src="assets/javascripts/chosen.js"></script>
   <script type="text/javascript" src="assets/javascripts/modal.js"></script>
@@ -133,10 +87,10 @@
     App.load();
     UI.init();
 
-    var gui = require('nw.gui');
-    onload = function() {
-      gui.Window.get().show();
-    }
+    // var gui = require('nw.gui');
+    // onload = function() {
+    //   gui.Window.get().show();
+    // }
   </script>
 </body>
 </html>
