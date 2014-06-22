@@ -60,6 +60,7 @@ UI.init = function() {
       collection: new Collection(items)
     })
   });
+  this.collection = this.mainNav.libraryView.collection;
   this.mainNav.render();
   this.mainNav.libraryView.render();
 };
