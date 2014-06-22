@@ -54,10 +54,10 @@ UI.init = function() {
     issue.series = siege;
     items.push(issue);
   });
-
+  
   this.mainNav = new MainNav({
     libraryView: new LibraryView({
-      items: items
+      collection: new Collection(items)
     })
   });
   this.mainNav.render();

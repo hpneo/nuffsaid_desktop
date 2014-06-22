@@ -19,9 +19,10 @@ var MainNav = Backbone.View.extend({
   },
   updateNavItems: function(e) {
     var librarySection = $(e.target).val(),
-        navItems = this.$el.find('.nav_item.for_' + librarySection);
+        allNavItems = this.$el.find('.nav_item'),
+        navItems = allNavItems.filter('.for_' + librarySection);
 
-    this.$el.find('.nav_item').hide();
+    allNavItems.hide();
     navItems.show();
   },
   handleNavItem: function(e) {
