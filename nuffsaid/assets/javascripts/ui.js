@@ -1,5 +1,47 @@
 var UI = {};
 
+UI.listenWindowEvents = function() {
+  var gui = require('nw.gui'),
+      mainWindow = gui.Window.get();
+
+  mainWindow.on('blur', function() {
+    document.body.classList.add('focus_out');
+  });
+
+  mainWindow.on('focus', function() {
+    document.body.classList.remove('focus_out');
+  });
+
+  // mainWindow.on('load', function() {
+  //   mainWindow.show();
+  // });
+};
+
+UI.initAppMenus = function() {
+  var gui = require('nw.gui');
+  var win = gui.Window.get();
+  var menubar = new gui.Menu({ type: 'menubar' });
+  var file = new gui.Menu();
+  var help = new gui.Menu();
+
+  file.append(new gui.MenuItem({
+    label: 'Add series...',
+    click: function() {
+      new AddSeries();
+    }
+  }));
+  file.append(new gui.MenuItem({
+    label: 'Add publisher...'
+  }));
+  file.append(new gui.MenuItem({
+    label: 'Add story arc...'
+  }));
+
+  win.menu = menubar;
+  win.menu.insert(new gui.MenuItem({ label: 'File', submenu: file}), 1);
+  win.menu.append(new gui.MenuItem({ label: 'Help', submenu: help}));
+};
+
 UI.init = function() {
   var marvel = new App.Models.Publisher({
     name: 'Marvel'
@@ -57,7 +99,7 @@ UI.init = function() {
   
   this.mainNav = new MainNav({
     libraryView: new LibraryView({
-      collection: new Collection(items)
+      collection: new Collection([])
     })
   });
   this.collection = this.mainNav.libraryView.collection;

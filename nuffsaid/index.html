@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/layout.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/nav.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/library.css">
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/add_series.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/modal.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/chosen.css">
 </head>
@@ -62,12 +63,13 @@
         <form method="post">
           <p>
             <label for="series_name">Search:</label>
-            <input type="text" name="series[name]" id="series_name" />
+            <input type="text" name="series[name]" id="series_name" placeholder="Type the series name and then hit Enter" />
           </p>
           <p class="centered">
             <input type="submit" value="Add">
           </p>
         </form>
+        <div id="results_wrapper"></div>
       </section>
     </div>
   </template>
@@ -80,6 +82,8 @@
   <script type="text/javascript" src="app/views/series_item.js"></script>
   <script type="text/javascript" src="app/views/issue_item.js"></script>
   <script type="text/javascript" src="app/views/library.js"></script>
+  <script type="text/javascript" src="app/views/list_view.js"></script>
+  <script type="text/javascript" src="app/views/add_series.js"></script>
   <script type="text/javascript" src="assets/javascripts/chosen.js"></script>
   <script type="text/javascript" src="assets/javascripts/modal.js"></script>
   <script type="text/javascript" src="assets/javascripts/ui.js"></script>
@@ -87,11 +91,8 @@
   <script type="text/javascript">
     App.load();
     UI.init();
-
-    // var gui = require('nw.gui');
-    // onload = function() {
-    //   gui.Window.get().show();
-    // }
+    UI.listenWindowEvents();
+    UI.initAppMenus();
   </script>
 </body>
 </html>

@@ -13,13 +13,25 @@
   padding: 20px;
 }
 
-#library .item {
+#library h3.empty {
+  display: block;
+  width: 100%;
+  align-self: center;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  color: #d5d5d5;
+}
+
+.list_view .item {
   width: 248px;
   height: 248px;
   border-radius: 4px;
 }
 
-#library .item img {
+.list_view .item img {
   display: block;
   max-width: 244px;
   max-height: 192px;
@@ -28,34 +40,34 @@
   border-radius: 1px;
 }
 
-#library .item span {
+.list_view .item span {
   display: block;
   text-align: center;
 }
 
-#library .item span:nth-child(2) {
+.list_view .item span:nth-child(2) {
   color: #333333;
   font-weight: 600;
 }
 
-#library .item span:nth-child(3) {
+.list_view .item span:nth-child(3) {
   color: #666666;
   font-weight: 300;
   font-size: 12px;
 }
 
-#library .item:hover {
+.list_view .item:hover {
   background: #ecf0f1;
 }
 
-#library .item.selected img {
+.list_view .item.selected img {
   /*background: #308cd9;*/
   background: #ecf0f1;
   outline: solid 2px #308cd9;
   box-shadow: 1px 1px 10px #308cd9;
 }
 
-#library .item.selected span.series,
-#library .item.selected span.issueNumber {
+.list_view .item.selected span.series,
+.list_view .item.selected span.issueNumber {
   /*color: #ffffff;*/
 }

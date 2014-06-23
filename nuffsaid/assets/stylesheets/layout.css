@@ -34,6 +34,10 @@ ul {
   list-style: none;
 }
 
+input {
+  outline: none;
+}
+
 .float-left {
   float: left;
 }

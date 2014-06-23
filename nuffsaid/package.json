@@ -4,6 +4,7 @@
   "description": "Comic book library app",
   "version": "0.1.0",
   "keywords": [ "comic", "comicbook" ],
+  "single-instance": true,
   "window": {
     "title": "Nuff Said",
     "width": 800,

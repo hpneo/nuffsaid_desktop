@@ -1,0 +1,15 @@
+#results_wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
+#results {
+  width: 1200%;
+  height: 248px;
+  overflow: hidden;
+  background: #fcfcfc;
+}
+
+#results .item {
+  float: left;
+}

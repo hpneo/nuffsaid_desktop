@@ -1,5 +1,6 @@
 var Library = React.createClass({
   render: function() {
+    var libraryId = this.props.id || 'library';
     var items = this.props.children.map(function(item) {
       if (item instanceof App.Models.Series) {
         return SeriesItem({ model: item.toJSON() });
@@ -12,8 +13,15 @@ var Library = React.createClass({
       if (item instanceof App.Models.StoryArc) {}
     }.bind(this));
 
+    if (items.length === 0) {
+      items = React.DOM.h3({
+        className: 'empty'
+      }, 'No items');
+    }
+
     return React.DOM.div({
-      id: 'library'
+      id: libraryId,
+      className: 'list_view'
     }, items);
   }
 });
@@ -21,9 +29,9 @@ var Library = React.createClass({
 var LibraryView = Backbone.View.extend({
   el: '#library_wrapper',
   initialize: function() {
-    this.listenTo(this.collection, 'remove', function() {
-      this.render();
-    });
+    this.listenTo(this.collection, 'add', this.render);
+    this.listenTo(this.collection, 'remove', this.render);
+    this.listenTo(this.collection, 'reset', this.render);
   },
   render: function() {
     React.renderComponent(Library({

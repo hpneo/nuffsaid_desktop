@@ -78,7 +78,6 @@ nav input {
   background: rgba(255, 255, 255, 0.9);
   border: solid 1px #262626;
   border-radius: 3px;
-  outline: none;
 }
 
 nav input:focus {
