@@ -1,13 +1,15 @@
 var Library = React.createClass({
   render: function() {
-    var libraryId = this.props.id || 'library';
+    var libraryId = this.props.id || 'library',
+        onItemClick = this.props.onItemClick;
+    
     var items = this.props.children.map(function(item) {
       if (item instanceof App.Models.Series) {
-        return SeriesItem({ model: item.toJSON() });
+        return SeriesItem({ model: item.toJSON(), onClick: onItemClick });
       }
 
       if (item instanceof App.Models.Issue) {
-        return IssueItem({ model: item.toJSON() });
+        return IssueItem({ model: item.toJSON(), onClick: onItemClick });
       }
 
       if (item instanceof App.Models.StoryArc) {}

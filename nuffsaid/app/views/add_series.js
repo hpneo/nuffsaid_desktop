@@ -22,7 +22,8 @@ function AddSeries() {
           });
 
           var publisherModel = new App.Models.Publisher({
-            name: seriesItem.publisher.name
+            name: seriesItem.publisher.name,
+            api_id: seriesItem.publisher.id
           });
 
           seriesModel.publisher = publisherModel;
@@ -32,12 +33,17 @@ function AddSeries() {
 
         var library = new ListView({
           el: '#results_wrapper',
-          collection: new Collection(series)
+          collection: new Collection(series),
+          onItemClick: function() {
+            console.log(this);
+          }
         });
 
         library.render();
+
         input.removeAttr('disabled');
       }).catch(function() {
+        console.log(arguments);
         input.removeAttr('disabled');
       });
     }
