@@ -1,4 +1,10 @@
 var UI = {};
+var Collection = require('./libs/collection');
+var MainNav = require('./app/views/main_nav');
+var SeriesItem = require('./app/views/series_item');
+var IssueItem = require('./app/views/issue_item');
+var LibraryView = require('./app/views/library_view');
+var AddSeries = require('./app/views/add_series');
 
 UI.listenWindowEvents = function() {
   var gui = require('nw.gui'),

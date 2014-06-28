@@ -1,3 +1,9 @@
+var Collection = require('../../libs/collection');
+var Modal = require('../../libs/modal');
+var $ = require('jquery');
+
+var ListView = require('./list_view');
+
 function AddSeries() {
   var ComicVine = require('comicvine');
   var modal = Modal.show('series');
@@ -51,3 +57,5 @@ function AddSeries() {
 
   window.currentModal = modal;
 }
+
+module.exports = AddSeries;

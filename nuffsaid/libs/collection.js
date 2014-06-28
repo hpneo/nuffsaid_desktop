@@ -1,3 +1,6 @@
+var _ = require('underscore'),
+    Backbone = require('backbone');
+
 function Collection(items) {
   this.items = (items || []).slice(0);
 };
@@ -41,3 +44,5 @@ Collection.prototype.reset = function() {
 
   this.trigger('reset');
 };
+
+module.exports = Collection;

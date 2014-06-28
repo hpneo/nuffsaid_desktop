@@ -4,22 +4,18 @@ Backbone.$ = require('jquery');
 var Library = require('./library');
 var React = require('../../libs/react');
 
-var ListView = Backbone.View.extend({
-  initialize: function(options) {
-    this.onItemClick = options.onItemClick;
+var LibraryView = Backbone.View.extend({
+  el: '#library_wrapper',
+  initialize: function() {
     this.listenTo(this.collection, 'add', this.render);
     this.listenTo(this.collection, 'remove', this.render);
     this.listenTo(this.collection, 'reset', this.render);
   },
   render: function() {
     React.renderComponent(Library({
-      id: 'results',
-      children: this.collection.items,
-      onItemClick: this.onItemClick
-    }), this.el, function() {
-      $(this.getDOMNode()).width(this.props.children.length * 248);
-    });
+      children: this.collection.items
+    }), this.el);
   }
 });
 
-module.exports = ListView;
+module.exports = LibraryView;

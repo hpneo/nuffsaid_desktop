@@ -1,3 +1,10 @@
+var Backbone = require('backbone');
+Backbone.$ = $ = require('jquery');
+
+var React = require('../../libs/react');
+var SeriesItem = require('./series_item');
+var IssueItem = require('./issue_item');
+
 var Library = React.createClass({
   render: function() {
     var libraryId = this.props.id || 'library',
@@ -28,16 +35,4 @@ var Library = React.createClass({
   }
 });
 
-var LibraryView = Backbone.View.extend({
-  el: '#library_wrapper',
-  initialize: function() {
-    this.listenTo(this.collection, 'add', this.render);
-    this.listenTo(this.collection, 'remove', this.render);
-    this.listenTo(this.collection, 'reset', this.render);
-  },
-  render: function() {
-    React.renderComponent(Library({
-      children: this.collection.items
-    }), this.el);
-  }
-});
+module.exports = Library;

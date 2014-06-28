@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 var Modal = function Modal(options) {
   this.modalId = options.modal;
   this.content = $('#template_' + options.modal)[0].content;
@@ -94,3 +96,5 @@ Modal.prototype.close = function() {
 Modal.show = function(modal) {
   return (new Modal({modal: modal})).show();
 };
+
+module.exports = Modal;

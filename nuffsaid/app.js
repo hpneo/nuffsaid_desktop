@@ -13,4 +13,12 @@ App.load = function() {
   App.Models.Series = require('./app/models/series');
   App.Models.StoryArc = require('./app/models/story_arc');
   App.Models.Issue = require('./app/models/issue');
+
+  global.document = global.window.document;
+
+  UI.init();
+  UI.listenWindowEvents();
+  UI.initAppMenus();
 };
+
+global.App = App;

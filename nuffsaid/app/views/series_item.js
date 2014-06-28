@@ -1,3 +1,5 @@
+var React = require('../../libs/react');
+
 var SeriesItem = React.createClass({
   displayName: 'SeriesItem',
   render: function() {
@@ -16,3 +18,5 @@ var SeriesItem = React.createClass({
     ]);
   }
 });
+
+module.exports = SeriesItem;

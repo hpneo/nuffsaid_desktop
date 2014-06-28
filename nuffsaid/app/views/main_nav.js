@@ -1,3 +1,8 @@
+var Backbone = require('backbone');
+var $ = require('jquery');
+
+Backbone.$ = $;
+
 var MainNav = Backbone.View.extend({
   el: '#main_nav',
   events: {
@@ -37,3 +42,5 @@ var MainNav = Backbone.View.extend({
     }
   }
 });
+
+module.exports = MainNav;

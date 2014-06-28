@@ -1,3 +1,5 @@
+var React = require('../../libs/react');
+
 var IssueItem = React.createClass({
   displayName: 'IssueItem',
   render: function() {
@@ -10,3 +12,5 @@ var IssueItem = React.createClass({
     ]);
   }
 });
+
+module.exports = IssueItem;
