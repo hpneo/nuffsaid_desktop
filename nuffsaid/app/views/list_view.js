@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 Backbone.$ = require('jquery');
 
 var Library = require('./library');
-var React = require('../../libs/react');
+var React = require('react');
 
 var ListView = Backbone.View.extend({
   initialize: function(options) {

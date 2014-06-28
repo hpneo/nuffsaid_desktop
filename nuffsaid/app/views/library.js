@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 Backbone.$ = $ = require('jquery');
 
-var React = require('../../libs/react');
+var React = require('react');
 var SeriesItem = require('./series_item');
 var IssueItem = require('./issue_item');
 

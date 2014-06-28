@@ -1,5 +1,5 @@
 var UI = {};
-var Collection = require('./libs/collection');
+var Collection = require('collection');
 var MainNav = require('./app/views/main_nav');
 var SeriesItem = require('./app/views/series_item');
 var IssueItem = require('./app/views/issue_item');

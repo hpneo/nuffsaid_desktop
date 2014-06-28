@@ -1,5 +1,5 @@
-var Collection = require('../../libs/collection');
-var Modal = require('../../libs/modal');
+var Collection = require('collection');
+var Modal = require('modal');
 var $ = require('jquery');
 
 var ListView = require('./list_view');

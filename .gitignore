@@ -4,4 +4,7 @@
 !/nuffsaid
 /nuffsaid/node_modules/*
 !/nuffsaid/node_modules/coffre
+!/nuffsaid/node_modules/collection
 !/nuffsaid/node_modules/comicvine
+!/nuffsaid/node_modules/modal
+!/nuffsaid/node_modules/react

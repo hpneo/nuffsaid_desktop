@@ -1,4 +1,4 @@
-var React = require('../../libs/react');
+var React = require('react');
 
 var IssueItem = React.createClass({
   displayName: 'IssueItem',
