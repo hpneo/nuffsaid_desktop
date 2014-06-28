@@ -1,2 +1,7 @@
+.DS_Store
 /dist
-/node_modules
+/node_modules/*
+!/nuffsaid
+/nuffsaid/node_modules/*
+!/nuffsaid/node_modules/coffre
+!/nuffsaid/node_modules/comicvine
