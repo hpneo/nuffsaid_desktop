@@ -1,6 +1,8 @@
 var Backbone = require('backbone');
 var $ = require('jquery');
 
+require('ui/chosen');
+
 Backbone.$ = $;
 
 var MainNav = Backbone.View.extend({
