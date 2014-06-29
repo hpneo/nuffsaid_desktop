@@ -23,10 +23,11 @@ nav.medium {
 }
 
 nav.small {
-  background: #efefef;
+  background: #eeeeee;
   height: 24px;
   line-height: 24px;
   box-shadow: none;
+  padding: 0;
 }
 
 nav.bottom {
@@ -62,8 +63,8 @@ nav.medium > form {
 }
 
 nav.small > * {
-  height: 22px;
-  line-height: 22px;
+  height: 24px;
+  line-height: 24px;
 }
 
 nav > form {
@@ -86,10 +87,6 @@ nav input:focus {
 
 nav select {
   min-width: 130px;
-}
-
-nav > a {
-  color: rgba(255, 255, 255, 0.9);
 }
 
 nav.main > a {
@@ -131,4 +128,13 @@ nav #library_sections_form {
 
 nav .nav_item {
   display: none;
+}
+
+nav.small > a {
+  min-width: 24px;
+  text-align: center;
+  border-right: solid 1px #a3a3a3;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #ffffff), color-stop(50%, #f6f6f6), color-stop(52%, #eeeeee), color-stop(100%, #f4f4f4));
+  background: -webkit-linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
+  background: linear-gradient(top, #ffffff 20%, #f6f6f6 50%, #eeeeee 52%, #f4f4f4 100%);
 }

@@ -7,7 +7,7 @@ var SeriesItem = React.createClass({
       className: 'item'
     };
 
-    if ('onClick' in this.props) {
+    if (this.props.onClick) {
       divOptions['onClick'] = this.props.onClick.bind(this);
     }
 

@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 var ListView = require('./list_view');
 
-function AddSeries() {
+function AddSeriesModal() {
   var ComicVine = require('comicvine');
   var modal = Modal.show('series');
 
@@ -41,7 +41,15 @@ function AddSeries() {
           el: '#results_wrapper',
           collection: new Collection(series),
           onItemClick: function() {
-            console.log(this);
+            var publisher = new App.Models.Publisher(this.props.model.publisher);
+            var series = new App.Models.Series(this.props.model);
+
+            series.publisher = publisher;
+
+            ComicVine.Publisher.find(publisher.api_id).then(function(publisherFromComicVine) {
+              publisher.description = publisherFromComicVine.description;
+              publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
+            });
           }
         });
 
@@ -58,4 +66,4 @@ function AddSeries() {
   window.currentModal = modal;
 }
 
-module.exports = AddSeries;
+module.exports = AddSeriesModal;
