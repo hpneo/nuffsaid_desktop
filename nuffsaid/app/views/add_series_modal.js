@@ -40,15 +40,24 @@ function AddSeriesModal() {
         var library = new ListView({
           el: '#results_wrapper',
           collection: new Collection(series),
-          onItemClick: function() {
+          onItemDoubleClick: function() {
             var publisher = new App.Models.Publisher(this.props.model.publisher);
             var series = new App.Models.Series(this.props.model);
 
-            series.publisher = publisher;
-
             ComicVine.Publisher.find(publisher.api_id).then(function(publisherFromComicVine) {
               publisher.description = publisherFromComicVine.description;
-              publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
+
+              if (publisherFromComicVine.image) {
+                publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
+              }
+
+              return publisher.save();
+            }).then(function(publisher) {
+              series.publisher = publisher;
+
+              return series.save();
+            }).then(function(series) {
+              UI.libraryView.collection.add(series);
             });
           }
         });

@@ -111,9 +111,10 @@ UI.init = function() {
       collection: new Collection([])
     })
   });
-  this.collection = this.mainNav.libraryView.collection;
+  this.libraryView = this.mainNav.libraryView;
+  this.collection = this.libraryView.collection;
   this.mainNav.render();
-  this.mainNav.libraryView.render();
+  this.libraryView.render();
 };
 
 global.UI = UI;

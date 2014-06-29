@@ -8,15 +8,22 @@ var IssueItem = require('./issue_item');
 var Library = React.createClass({
   render: function() {
     var libraryId = this.props.id || 'library',
-        onItemClick = this.props.onItemClick;
+        onItemClick = this.props.onItemClick,
+        onItemDoubleClick = this.props.onItemDoubleClick;
     
     var items = this.props.children.map(function(item) {
+      var itemOptions = {
+        model: item.toJSON(),
+        onClick: onItemClick,
+        onDoubleClick: onItemDoubleClick
+      };
+      
       if (item instanceof App.Models.Series) {
-        return SeriesItem({ model: item.toJSON(), onClick: onItemClick });
+        return SeriesItem(itemOptions);
       }
 
       if (item instanceof App.Models.Issue) {
-        return IssueItem({ model: item.toJSON(), onClick: onItemClick });
+        return IssueItem(itemOptions);
       }
 
       if (item instanceof App.Models.StoryArc) {}

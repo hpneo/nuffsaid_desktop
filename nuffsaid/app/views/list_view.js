@@ -7,6 +7,7 @@ var React = require('react');
 var ListView = Backbone.View.extend({
   initialize: function(options) {
     this.onItemClick = options.onItemClick;
+    this.onItemDoubleClick = options.onItemDoubleClick;
     this.listenTo(this.collection, 'add', this.render);
     this.listenTo(this.collection, 'remove', this.render);
     this.listenTo(this.collection, 'reset', this.render);
@@ -15,7 +16,8 @@ var ListView = Backbone.View.extend({
     React.renderComponent(Library({
       id: 'results',
       children: this.collection.items,
-      onItemClick: this.onItemClick
+      onItemClick: this.onItemClick,
+      onItemDoubleClick: this.onItemDoubleClick
     }), this.el, function() {
       $(this.getDOMNode()).width(this.props.children.length * 248);
     });

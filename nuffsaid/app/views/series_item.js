@@ -11,6 +11,10 @@ var SeriesItem = React.createClass({
       divOptions['onClick'] = this.props.onClick.bind(this);
     }
 
+    if (this.props.onDoubleClick) {
+      divOptions['onDoubleClick'] = this.props.onDoubleClick.bind(this);
+    }
+
     return React.DOM.div(divOptions, [
       React.DOM.img({className: 'seriesImage', src: this.props.model.image}),
       React.DOM.span({className: 'seriesName'}, this.props.model.name),
