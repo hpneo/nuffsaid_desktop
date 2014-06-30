@@ -24,12 +24,12 @@ function AddSeriesModal() {
             image: (seriesItem.image.super_url || seriesItem.image.medium_url),
             description: seriesItem.description,
             startYear: seriesItem.start_year,
-            api_id: seriesItem.id
+            api_id: seriesItem.id.toString()
           });
 
           var publisherModel = new App.Models.Publisher({
             name: seriesItem.publisher.name,
-            api_id: seriesItem.publisher.id
+            api_id: seriesItem.publisher.id.toString()
           });
 
           seriesModel.publisher = publisherModel;
@@ -41,21 +41,47 @@ function AddSeriesModal() {
           el: '#results_wrapper',
           collection: new Collection(series),
           onItemDoubleClick: function() {
-            var publisher = new App.Models.Publisher(this.props.model.publisher);
-            var series = new App.Models.Series(this.props.model);
+            var publisherAttributes = this.props.model.publisher;
+            var seriesAttributes = this.props.model;
 
-            ComicVine.Publisher.find(publisher.api_id).then(function(publisherFromComicVine) {
-              publisher.description = publisherFromComicVine.description;
+            App.Models.Publisher.where({ api_id: publisherAttributes.api_id }).load().then(function(results) {
+              var publisher;
 
-              if (publisherFromComicVine.image) {
-                publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
+              if (results.length === 0) {
+                publisher = new App.Models.Publisher(publisherAttributes);
+              }
+              else {
+                publisher = results[0];
               }
 
               return publisher.save();
             }).then(function(publisher) {
-              series.publisher = publisher;
+              ComicVine.Publisher.find(publisher.api_id).then(function(publisherFromComicVine) {
+                publisher.description = publisherFromComicVine.description;
 
-              return series.save();
+                if (publisherFromComicVine.image) {
+                  publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
+                }
+
+                publisher.save();
+              });
+
+              var seriesPromise = App.Models.Series.where({ api_id: seriesAttributes.api_id }).load().then(function(results) {
+                var series;
+
+                if (results.length === 0) {
+                  series = new App.Models.Series(seriesAttributes);
+                }
+                else {
+                  series = results[0];
+                }
+
+                series.publisher = publisher;
+
+                return series.save();
+              });
+
+              return seriesPromise;
             }).then(function(series) {
               UI.libraryView.collection.add(series);
             });
