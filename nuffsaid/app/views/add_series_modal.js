@@ -19,18 +19,8 @@ function AddSeriesModal() {
 
       ComicVine.Volume.search(input.val()).then(function(series) {
         series = series.map(function(seriesItem) {
-          var seriesModel = new App.Models.Series({
-            name: seriesItem.name,
-            image: (seriesItem.image.super_url || seriesItem.image.medium_url),
-            description: seriesItem.description,
-            startYear: seriesItem.start_year,
-            api_id: seriesItem.id.toString()
-          });
-
-          var publisherModel = new App.Models.Publisher({
-            name: seriesItem.publisher.name,
-            api_id: seriesItem.publisher.id.toString()
-          });
+          var seriesModel = App.Models.Series.fromComicVine(seriesItem),
+              publisherModel = App.Models.Publisher.fromComicVine(seriesItem.publisher);
 
           seriesModel.publisher = publisherModel;
 

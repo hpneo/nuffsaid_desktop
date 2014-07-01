@@ -19,6 +19,7 @@ App.load = function() {
   UI.init();
   UI.listenWindowEvents();
   UI.initAppMenus();
+  UI.initFooterStats();
 };
 
 global.App = App;
