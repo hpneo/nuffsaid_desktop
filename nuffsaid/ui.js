@@ -90,17 +90,19 @@ UI.load = function() {
 };
 
 UI.initFilesListeners = function() {
+  var AddSeriesFromDirectoryTask = require('./app/tasks/add_series_from_directory'),
+      AddIssuesToSeriesTask = require('./app/tasks/add_issues_to_series');
+
   var selectDirectory = document.getElementById('select_directory'),
       selectFiles = document.getElementById('select_files');
 
-  selectDirectory.addEventListener('change', function(e) {
-    var path = this.value;
-    App.Models.Series.fromFileSystem(path).then(function(results) {
-      if (results.length > 0) {
-        var series = App.Models.Series.fromComicVine(results[0]);
-        series.path = path;
-        console.log(series);
-      }
+  selectDirectory.addEventListener('change', function() {
+    // add background spinner or loader
+    var service = new AddSeriesFromDirectoryTask(this.value);
+
+    service.on('done', function(series) {
+      console.log(series);
+      //new AddIssuesToSeriesTask(series);
     });
   });
 
@@ -119,8 +121,8 @@ UI.initFooterStats = function() {
   var issuesCountPromise = App.Models.Issue.count();
 
   Promise.all([seriesCountPromise, issuesCountPromise]).then(function(stats) {
-    var seriesCount = stats[0];
-    var issuesCount = stats[1];
+    var seriesCount = stats[0],
+        issuesCount = stats[1];
 
     document.getElementById('stats').textContent = seriesCount + ' series' + ', ' + issuesCount + ' issues';
   });

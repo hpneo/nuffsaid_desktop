@@ -8,6 +8,9 @@ function AddSeriesModal() {
   var ComicVine = require('comicvine');
   var modal = Modal.show('series');
 
+  var AddPublisherFromComicVineTask = require('../tasks/add_publisher_from_comicvine'),
+      AddSeriesFromComicVineTask = require('../tasks/add_series_from_comicvine');
+
   modal.overlay.find('.modal').find('form').on('submit', function(e) {
     e.preventDefault();
   });
@@ -34,46 +37,14 @@ function AddSeriesModal() {
             var publisherAttributes = this.props.model.publisher;
             var seriesAttributes = this.props.model;
 
-            App.Models.Publisher.where({ api_id: publisherAttributes.api_id }).load().then(function(results) {
-              var publisher;
+            var publisherService = new AddPublisherFromComicVineTask(publisherAttributes);
+            
+            publisherService.on('done', function(publisher) {
+              var seriesService = new AddSeriesFromComicVineTask(seriesAttributes, publisher);
 
-              if (results.length === 0) {
-                publisher = new App.Models.Publisher(publisherAttributes);
-              }
-              else {
-                publisher = results[0];
-              }
-
-              return publisher.save();
-            }).then(function(publisher) {
-              ComicVine.Publisher.find(publisher.api_id).then(function(publisherFromComicVine) {
-                publisher.description = publisherFromComicVine.description;
-
-                if (publisherFromComicVine.image) {
-                  publisher.image = (publisherFromComicVine.image.super_url || publisherFromComicVine.image.medium_url);
-                }
-
-                publisher.save();
+              seriesService.on('done', function(series) {
+                UI.libraryView.collection.add(series);
               });
-
-              var seriesPromise = App.Models.Series.where({ api_id: seriesAttributes.api_id }).load().then(function(results) {
-                var series;
-
-                if (results.length === 0) {
-                  series = new App.Models.Series(seriesAttributes);
-                }
-                else {
-                  series = results[0];
-                }
-
-                series.publisher = publisher;
-
-                return series.save();
-              });
-
-              return seriesPromise;
-            }).then(function(series) {
-              UI.libraryView.collection.add(series);
             });
           }
         });
