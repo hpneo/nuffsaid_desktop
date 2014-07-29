@@ -12,6 +12,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 body {
@@ -49,4 +50,19 @@ input {
 #main {
   width: 100%;
   height: calc(100% - 24px - 32px);
+}
+
+#footer {
+  display: flex;
+  cursor: default;
+}
+
+#stats {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 11px;
+}
+
+#select_directory, #select_file, #select_files {
+  display: none;
 }

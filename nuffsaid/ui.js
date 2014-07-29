@@ -39,6 +39,13 @@ UI.initAppMenus = function() {
   }));
 
   file.append(new gui.MenuItem({
+    label: 'Add series from folder...',
+    click: function() {
+      document.getElementById('select_directory').click();
+    }
+  }));
+
+  file.append(new gui.MenuItem({
     label: 'Add publisher...'
   }));
   
@@ -63,6 +70,10 @@ UI.init = function() {
   this.mainNav.render();
   this.libraryView.render();
 
+  UI.listenWindowEvents();
+  UI.initFilesListeners();
+  UI.initAppMenus();
+  UI.initFooter();
   UI.load();
 };
 
@@ -78,6 +89,31 @@ UI.load = function() {
   });
 };
 
+UI.initFilesListeners = function() {
+  var selectDirectory = document.getElementById('select_directory'),
+      selectFiles = document.getElementById('select_files');
+
+  selectDirectory.addEventListener('change', function(e) {
+    var path = this.value;
+    App.Models.Series.fromFileSystem(path).then(function(results) {
+      if (results.length > 0) {
+        var series = App.Models.Series.fromComicVine(results[0]);
+        series.path = path;
+        console.log(series);
+      }
+    });
+  });
+
+  selectFiles.addEventListener('change', function(e) {
+    console.dir(this.files);
+  });
+};
+
+UI.initFooter = function() {
+  UI.initFooterStats();
+  UI.initFooterListeners();
+};
+
 UI.initFooterStats = function() {
   var seriesCountPromise = App.Models.Series.count();
   var issuesCountPromise = App.Models.Issue.count();
@@ -85,8 +121,24 @@ UI.initFooterStats = function() {
   Promise.all([seriesCountPromise, issuesCountPromise]).then(function(stats) {
     var seriesCount = stats[0];
     var issuesCount = stats[1];
-    
-    console.log(seriesCount, 'series', ',', issuesCount, 'issues');
+
+    document.getElementById('stats').textContent = seriesCount + ' series' + ', ' + issuesCount + ' issues';
+  });
+};
+
+UI.initFooterListeners = function() {
+  var gui = require('nw.gui'),
+      mainWindow = gui.Window.get(),
+      add = document.getElementById('add');
+
+  add.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    var clientRect = add.getBoundingClientRect(),
+        x = clientRect.right,
+        y = clientRect.top;
+
+    mainWindow.menu.items[0].submenu.popup(x, y)
   });
 };
 

@@ -17,7 +17,7 @@
     <form id="library_sections_form">
       <select id="library_sections">
         <option value="issues">Issues</option>
-        <option value="series">Series</option>
+        <option value="series" selected>Series</option>
         <!--<option value="story_arcs">Story Arcs</option>
         <option value="publishers">Publishers</option>-->
       </select>
@@ -52,11 +52,15 @@
     <section id="library_wrapper">
     </section>
   </section>
-  <nav class="small bottom">
-    <!-- <a href="#">+</a> -->
+  <nav class="small bottom" id="footer">
+    <a href="#" id="add">+</a>
+    <span id="stats"></span>
   </nav>
 
   <!-- TEMPLATES -->
+
+  <input type="file" webkitdirectory id="select_directory" />
+  <input type="file" multiple id="select_files" />
 
   <template id="template_series">
     <div class="modal animated bounceInDown" id="modal_series">

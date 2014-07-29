@@ -5,6 +5,42 @@ var Series = Coffre.defineModel('Series', function() {
   this.belongsTo('publisher');
 });
 
+var SPLITTERS = {
+  camelCase: /(?=[A-Z])/,
+  titleAndStartYear: /(.*)\s\((\d{4})\)$/
+};
+
+var REGEXERS = {
+  titleAndStartYear: /(.*)\s\((\d{4})\)$/
+}
+
+Series.fromFileSystem = function(directoryPath) {
+  var ComicVine = require('comicvine');
+
+  var directoryName = directoryPath.split('/').pop();
+
+  if (directoryName.indexOf(' ') === -1) {
+    directoryName = directoryName.split(SPLITTERS.camelCase).join(' ');
+  }
+
+  if (directoryName.indexOf('-') > -1) {
+    directoryName = directoryName.replace(/-/g, '_');
+  }
+
+  return ComicVine.Volume.search(directoryName).then(function(results) {
+    if (results.length === 0) {
+      if (REGEXERS.titleAndStartYear.test(directoryName)) {
+        directoryName = REGEXERS.titleAndStartYear.exec(directoryName)[1];
+
+        return ComicVine.Volume.search(directoryName);
+      }
+    }
+    else {
+      return results;
+    }
+  });
+};
+
 Series.fromComicVine = function(seriesInfo) {
   var series = new App.Models.Series({
     name: seriesInfo.name,
