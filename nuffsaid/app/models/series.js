@@ -39,7 +39,16 @@ Series.fromFileSystem = function(directoryPath) {
       }
     }
     else {
-      return results;
+      var filteredResults = results.filter(function(item) {
+        return item.name === directoryName;
+      });
+
+      if (filteredResults.length > 0) {
+        return filteredResults;
+      }
+      else {
+        return results;
+      }
     }
   });
 };

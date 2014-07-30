@@ -107,10 +107,12 @@ UI.initFilesListeners = function() {
 
       issuesTask.on('done', function(issues) {
         console.log(issues);
+        UI.initFooterStats();
       });
 
       issuesTask.on('error', function(error) {
         console.log(error);
+        UI.initFooterStats();
       })
     });
   });
