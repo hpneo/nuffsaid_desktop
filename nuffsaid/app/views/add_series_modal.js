@@ -9,7 +9,7 @@ function AddSeriesModal() {
   var modal = Modal.show('series');
 
   var AddPublisherFromComicVineTask = require('../tasks/add_publisher_from_comicvine'),
-      AddSeriesFromComicVineTask = require('../tasks/add_series_from_comicvine');
+      AddSeriesTask = require('../tasks/add_series');
 
   modal.overlay.find('.modal').find('form').on('submit', function(e) {
     e.preventDefault();
@@ -40,7 +40,7 @@ function AddSeriesModal() {
             var publisherService = new AddPublisherFromComicVineTask(publisherAttributes);
             
             publisherService.on('done', function(publisher) {
-              var seriesService = new AddSeriesFromComicVineTask(seriesAttributes, publisher);
+              var seriesService = new AddSeriesTask(seriesAttributes, publisher);
 
               seriesService.on('done', function(series) {
                 UI.libraryView.collection.add(series);

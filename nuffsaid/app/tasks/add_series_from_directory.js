@@ -1,4 +1,6 @@
-var EventEmitter = require('events').EventEmitter;
+var AddPublisherFromComicVineTask = require('./add_publisher_from_comicvine'),
+    AddSeriesTask = require('./add_series'),
+    EventEmitter = require('events').EventEmitter;
 
 var AddSeriesFromDirectoryTask = function(path) {
   var series,
@@ -6,14 +8,22 @@ var AddSeriesFromDirectoryTask = function(path) {
 
   App.Models.Series.fromFileSystem(path).then(function(results) {
     if (results.length > 0) {
-      series = App.Models.Series.fromComicVine(results[0]);
-      series.path = path;
+      var seriesAttributes = App.Models.Series.fromComicVine(results[0]),
+          publisherAttributes = App.Models.Publisher.fromComicVine(results[0].publisher),
+          publisherService = new AddPublisherFromComicVineTask(publisherAttributes);
 
-      self.emit('done', series);
-      
-      // series.save().then(function() {
-      //   self.emit('done');
-      // });
+      publisherService.on('done', function(publisher) {
+        var seriesService = new AddSeriesTask(seriesAttributes, publisher);
+
+        seriesService.on('done', function(series) {
+          series.publisher = publisher;
+          series.path = path;
+
+          series.save().then(function(series) {
+            self.emit('done', series);
+          });
+        });
+      });
     }
     else {
       self.emit('error', 'No series passed');

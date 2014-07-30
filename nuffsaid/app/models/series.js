@@ -14,6 +14,9 @@ var REGEXERS = {
   titleAndStartYear: /(.*)\s\((\d{4})\)$/
 };
 
+Series.SPLITTERS = SPLITTERS;
+Series.REGEXERS = REGEXERS;
+
 Series.fromFileSystem = function(directoryPath) {
   var ComicVine = require('comicvine');
 

@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter,
     ComicVine = require('comicvine');
 
-var AddSeriesFromComicVineTask = function(seriesAttributes, publisher) {
+var AddSeriesTask = function(seriesAttributes, publisher) {
   var self = this;
 
   App.Models.Series.where({
@@ -26,6 +26,6 @@ var AddSeriesFromComicVineTask = function(seriesAttributes, publisher) {
   });
 };
 
-AddSeriesFromComicVineTask.prototype = Object.create(EventEmitter.prototype);
+AddSeriesTask.prototype = Object.create(EventEmitter.prototype);
 
-module.exports = AddSeriesFromComicVineTask;
+module.exports = AddSeriesTask;

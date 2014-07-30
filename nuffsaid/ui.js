@@ -98,11 +98,20 @@ UI.initFilesListeners = function() {
 
   selectDirectory.addEventListener('change', function() {
     // add background spinner or loader
-    var service = new AddSeriesFromDirectoryTask(this.value);
+    var seriesTask = new AddSeriesFromDirectoryTask(this.value);
 
-    service.on('done', function(series) {
-      console.log(series);
-      //new AddIssuesToSeriesTask(series);
+    seriesTask.on('done', function(series) {
+      UI.libraryView.collection.add(series);
+
+      var issuesTask = new AddIssuesToSeriesTask(series);
+
+      issuesTask.on('done', function(issues) {
+        console.log(issues);
+      });
+
+      issuesTask.on('error', function(error) {
+        console.log(error);
+      })
     });
   });
 
