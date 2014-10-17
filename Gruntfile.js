@@ -1,8 +1,11 @@
 module.exports = function(grunt) {
+  var version = '0.10.5';
+
   grunt.initConfig({
     nodewebkit: {
       options: {
         build_dir: './dist',
+        version: version,
         credits: './nuffsaid/credits.html',
         win: true,
         linux32: true,
@@ -21,10 +24,10 @@ module.exports = function(grunt) {
 
     switch(process.platform) {
       case 'linux':
-        options['cmd'] = './dist/cache/linux32/0.9.2/nw';
+        options['cmd'] = './dist/cache/linux32/' + version + '/nw';
       break;
       case 'darwin':
-        options['cmd'] = 'dist/cache/mac/0.9.2/node-webkit.app/Contents/MacOS/node-webkit'
+        options['cmd'] = 'dist/cache/mac/' + version + '/node-webkit.app/Contents/MacOS/node-webkit'
       break;
     }
 

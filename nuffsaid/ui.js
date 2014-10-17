@@ -53,9 +53,26 @@ UI.initAppMenus = function() {
     label: 'Add story arc...'
   }));
 
+  if (global.process.platform === 'darwin') {
+    menubar.createMacBuiltin("Nuff Said");
+  }
+
   win.menu = menubar;
-  win.menu.insert(new gui.MenuItem({ label: 'File', submenu: file}), 1);
-  win.menu.append(new gui.MenuItem({ label: 'Help', submenu: help}));
+  window.menu = menubar;
+
+  UI.menus = {};
+
+  UI.menus.file = file;
+  UI.menus.help = help;
+
+  if (global.process.platform === 'darwin') {
+    menubar.insert(new gui.MenuItem({ label: 'File', submenu: file}), 1);
+  }
+  else {
+    menubar.append(new gui.MenuItem({ label: 'File', submenu: file}));
+  }
+  
+  menubar.append(new gui.MenuItem({ label: 'Help', submenu: help}));
 };
 
 UI.init = function() {
@@ -151,7 +168,7 @@ UI.initFooterListeners = function() {
         x = clientRect.right,
         y = clientRect.top;
 
-    mainWindow.menu.items[0].submenu.popup(x, y)
+    UI.menus.file.popup(x, y);
   });
 };
 
