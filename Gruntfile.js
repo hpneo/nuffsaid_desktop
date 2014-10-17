@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       case 'darwin':
         options['cmd'] = 'dist/cache/mac/' + version + '/node-webkit.app/Contents/MacOS/node-webkit';
       break;
-      case 'win':
+      case 'win32':
         options['cmd'] = 'dist/cache/win/' + version + '/nw';
       break;
     }
