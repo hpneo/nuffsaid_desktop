@@ -55,9 +55,9 @@ UI.initAppMenus = function() {
 
   if (global.process.platform === 'darwin') {
     menubar.createMacBuiltin("Nuff Said");
+    win.menu = menubar;
   }
 
-  win.menu = menubar;
   window.menu = menubar;
 
   UI.menus = {};
@@ -73,6 +73,10 @@ UI.initAppMenus = function() {
   }
   
   menubar.append(new gui.MenuItem({ label: 'Help', submenu: help}));
+
+  if (global.process.platform !== 'darwin') {
+    win.menu = menubar;
+  }
 };
 
 UI.init = function() {
